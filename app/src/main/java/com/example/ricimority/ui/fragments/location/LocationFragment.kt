@@ -1,10 +1,12 @@
 package com.example.ricimority.ui.fragments.location
 
+import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.ricimority.R
 import com.example.ricimority.base.BaseFragment
+import com.example.ricimority.data.network.apiservices.checkingtheInternet.CheckingTheInternet
 import com.example.ricimority.databinding.FragmentLocationBinding
 import com.example.ricimority.ui.adapters.LocationAdapter
 
@@ -23,8 +25,15 @@ class LocationFragment :
     }
 
     override fun setupObservers() {
-        viewModel.fetchLocation().observe(viewLifecycleOwner) {
-            locationAdapter.submitList(it.results)
+        if (CheckingTheInternet.isOnline(requireContext())) {
+            viewModel.fetchLocation().observe(viewLifecycleOwner) {
+                locationAdapter.submitList(it.results)
+            }
+        }else {
+            viewModel.getAllFromRoom().observe(viewLifecycleOwner) {
+                locationAdapter.submitList(it)
+                Log.e("not internet", "is network")
+            }
         }
     }
 }

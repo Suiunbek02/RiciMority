@@ -5,10 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ricimority.base.BaseDiffUtilltemCallback
 import com.example.ricimority.databinding.ItemEpisodeBinding
 import com.example.ricimority.model.episode.EpisodeModel
 
-class EpisodeAdapter : ListAdapter<EpisodeModel, EpisodeAdapter.ViewHolder>(DiffUtil) {
+class EpisodeAdapter :
+    ListAdapter<EpisodeModel, EpisodeAdapter.ViewHolder>(BaseDiffUtilltemCallback()) {
 
     class ViewHolder(private val binding: ItemEpisodeBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -31,24 +33,6 @@ class EpisodeAdapter : ListAdapter<EpisodeModel, EpisodeAdapter.ViewHolder>(Diff
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        getItem(position).let { holder.onBind(it) }
-    }
-
-    companion object {
-        private val DiffUtil = object : DiffUtil.ItemCallback<EpisodeModel>() {
-            override fun areItemsTheSame(
-                oldItem: EpisodeModel,
-                newItem: EpisodeModel
-            ): Boolean {
-                return  oldItem == newItem
-            }
-
-            override fun areContentsTheSame(
-                oldItem: EpisodeModel,
-                newItem: EpisodeModel
-            ): Boolean {
-                return oldItem.id == newItem.id
-            }
-        }
+        holder.onBind(getItem(position))
     }
 }

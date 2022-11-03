@@ -1,5 +1,6 @@
 package com.example.ricimority.ui.fragments.location
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.ricimority.model.RickAndMortyResponse
@@ -13,4 +14,8 @@ class LocationViewModel: ViewModel() {
      fun fetchLocation(): MutableLiveData<RickAndMortyResponse<LocationModel>> {
          return repository.fetchLocation()
      }
+
+    fun getAllFromRoom(): LiveData<List<LocationModel>> {
+        return repository.getLocation()
+    }
 }

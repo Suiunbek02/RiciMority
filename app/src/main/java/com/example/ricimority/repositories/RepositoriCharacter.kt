@@ -10,6 +10,7 @@ import retrofit2.Call
 import retrofit2.Response
 
 class RepositoriCharacter {
+
     val data: MutableLiveData<RickAndMortyResponse<Charactermodel>> = MutableLiveData()
 
     fun fetchCharacter(): MutableLiveData<RickAndMortyResponse<Charactermodel>> {
@@ -20,15 +21,16 @@ class RepositoriCharacter {
                     response: Response<RickAndMortyResponse<Charactermodel>>
                 ) {
                     response.body()?.let {
-                        App.appDatabase?.characterDao()?.insertList(it.results) }
-                        data.value = response.body()
+                        App.appDatabase?.characterDao()?.insertList(it.results)
+                        data.value = it
+                    }
                 }
 
                 override fun onFailure(
                     call: Call<RickAndMortyResponse<Charactermodel>>,
                     t: Throwable
                 ) {
-                    data.value = null
+
                 }
             })
         return data

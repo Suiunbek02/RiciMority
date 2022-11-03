@@ -15,12 +15,12 @@ class CharactorAdapter :
 
     class ViewHolder(private val binding: ItemCharacterBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
         fun onBind(item: Charactermodel?) {
             binding.itemCharacterText.text = item?.name
             binding.itemCharacterImage.load(item?.image)
             binding.itemCharacterStatus.text = item?.status
-            binding.itemFirstSeenIn.text = item?.created
+            binding.itemFirstSeenIn.text = item?.origin?.name
+            binding.itemLastLocation.text = item?.location?.name
             binding.itemImageRound.setCardBackgroundColor(colorImage(item))
         }
 

@@ -9,7 +9,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="170dp"
         android:layout_margin="5dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="#484848"
@@ -38,7 +38,6 @@
                 android:layout_marginEnd="5dp"
                 android:ellipsize="end"
                 android:lines="1"
-                android:layout_marginTop="5dp"
                 android:textStyle="bold"
                 android:text="NAME"
                 android:textColor="@color/white"
@@ -98,7 +97,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:text="Last_Known_Location"
                 android:textColor="#9e9e9e"
                 android:textSize="14sp"

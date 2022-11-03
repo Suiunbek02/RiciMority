@@ -1,14 +1,13 @@
 package com.example.ricimority.ui.fragments.charactor
 
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkInfo
+
 import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.ricimority.base.BaseFragment
 import com.example.ricimority.R
+import com.example.ricimority.data.network.apiservices.checkingtheInternet.CheckingTheInternet
 import com.example.ricimority.databinding.FragmentCharacterBinding
 import com.example.ricimority.ui.adapters.CharactorAdapter
 
@@ -27,7 +26,7 @@ class CharacterFragment :
     }
 
     override fun setupObservers() {
-        if (isNetworkAvailable(requireContext())) {
+        if (CheckingTheInternet.isOnline(requireContext())) {
             viewModel.fetchCharacter().observe(viewLifecycleOwner) {
                 charactorAdapter.submitList(it.results)
             }
@@ -37,12 +36,5 @@ class CharacterFragment :
                 Log.e("not internet", "is network")
             }
         }
-    }
-
-    fun isNetworkAvailable(context: Context): Boolean {
-        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        var activeNetworkInfo: NetworkInfo? = null
-        activeNetworkInfo = cm.activeNetworkInfo
-        return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting
     }
 }

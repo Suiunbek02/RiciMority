@@ -1,11 +1,16 @@
 package com.example.ricimority.model.episode
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.example.ricimority.base.IBaseDiffUtill
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "episode")
 data class EpisodeModel(
 
     @SerializedName("id")
-    val id: Int,
+    @PrimaryKey(autoGenerate = false)
+    override val id: Int,
 
     @SerializedName("name")
     val name: String,
@@ -14,11 +19,11 @@ data class EpisodeModel(
     val type: String,
 
     @SerializedName("air_date")
-    val airDate: String,
+    val airDate: String?,
 
     @SerializedName("url")
     val url: String,
 
     @SerializedName("created")
     val created: String,
-)
+): IBaseDiffUtill

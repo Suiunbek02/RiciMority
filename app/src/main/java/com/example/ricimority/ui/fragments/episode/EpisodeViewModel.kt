@@ -1,6 +1,7 @@
 package com.example.ricimority.ui.fragments.episode
 
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.ricimority.model.RickAndMortyResponse
@@ -13,5 +14,9 @@ class EpisodeViewModel : ViewModel() {
 
     fun fetchEpisode(): MutableLiveData<RickAndMortyResponse<EpisodeModel>> {
         return repository.fetchEpisode()
+    }
+
+    fun getAllFromRoom(): LiveData<List<EpisodeModel>> {
+        return repository.getEpisodes()
     }
 }

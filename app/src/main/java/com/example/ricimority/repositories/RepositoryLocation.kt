@@ -1,5 +1,6 @@
 package com.example.ricimority.repositories
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.ricimority.App
 import com.example.ricimority.model.RickAndMortyResponse
@@ -14,21 +15,28 @@ class RepositoryLocation {
 
     fun fetchLocation(): MutableLiveData<RickAndMortyResponse<LocationModel>> {
         App.locationApi?.fetchLocation()
-            ?.enqueue(object : Callback<RickAndMortyResponse<LocationModel>>{
+            ?.enqueue(object : Callback<RickAndMortyResponse<LocationModel>> {
                 override fun onResponse(
                     call: Call<RickAndMortyResponse<LocationModel>>,
                     response: Response<RickAndMortyResponse<LocationModel>>
                 ) {
-                    data.value = response.body()
+                    response.body()?.let {
+                        App.appDatabase?.locationDao()?.insertList(it.results)
+                        data.value = it
+                    }
                 }
 
                 override fun onFailure(
                     call: Call<RickAndMortyResponse<LocationModel>>,
                     t: Throwable
                 ) {
-                    data.value = null
+
                 }
             })
         return data
+    }
+
+    fun getLocation(): LiveData<List<LocationModel>> {
+        return App.appDatabase?.locationDao()?.getAllList()!!
     }
 }
