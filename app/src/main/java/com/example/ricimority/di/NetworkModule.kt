@@ -1,6 +1,6 @@
 package com.example.ricimority.di
 
-import com.example.ricimority.data.network.apiservices.CharactorApi
+import com.example.ricimority.data.network.apiservices.CharacterApi
 import com.example.ricimority.data.network.apiservices.EpisodeApi
 import com.example.ricimority.data.network.apiservices.LocationApi
 import com.example.ricimority.data.network.apiservices.RetrofitClient
@@ -20,7 +20,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideCharacterApi(): CharactorApi {
+    fun provideCharacterApi(): CharacterApi {
         return retrofit.providerCherecterApiService()
     }
 

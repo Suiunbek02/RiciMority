@@ -1,10 +1,9 @@
-package com.example.ricimority.repositories.pagingsources
+package com.example.ricimority.repositoryes.pagingsources
 
 import android.net.Uri
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.ricimority.data.network.apiservices.EpisodeApi
-import com.example.ricimority.model.character.Charactermodel
 import com.example.ricimority.model.episode.EpisodeModel
 import retrofit2.HttpException
 import java.io.IOException

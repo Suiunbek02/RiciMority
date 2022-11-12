@@ -7,7 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface CharactorApi {
+interface CharacterApi {
 
     @GET("api/character")
     suspend fun fetchCharacters(

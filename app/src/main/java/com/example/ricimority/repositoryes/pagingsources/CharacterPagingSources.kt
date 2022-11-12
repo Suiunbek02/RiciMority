@@ -1,15 +1,15 @@
-package com.example.ricimority.repositories.pagingsources
+package com.example.ricimority.repositoryes.pagingsources
 
 import android.net.Uri
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.ricimority.data.network.apiservices.CharactorApi
+import com.example.ricimority.data.network.apiservices.CharacterApi
 import com.example.ricimority.model.character.Charactermodel
 import retrofit2.HttpException
 import java.io.IOException
 
 class CharacterPagingSources(
-    private val characterApi: CharactorApi): PagingSource<Int, Charactermodel>() {
+    private val characterApi: CharacterApi): PagingSource<Int, Charactermodel>() {
 
     override suspend fun load(params: PagingSource.LoadParams<Int>): PagingSource.LoadResult<Int, Charactermodel> {
         val position = params.key ?: 1

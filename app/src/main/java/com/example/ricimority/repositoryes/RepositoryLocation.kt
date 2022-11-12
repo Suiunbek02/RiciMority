@@ -1,4 +1,4 @@
-package com.example.ricimority.repositories
+package com.example.ricimority.repositoryes
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,12 +6,9 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
-import com.example.ricimority.App
-import com.example.ricimority.data.network.apiservices.EpisodeApi
 import com.example.ricimority.data.network.apiservices.LocationApi
-import com.example.ricimority.model.episode.EpisodeModel
 import com.example.ricimority.model.location.LocationModel
-import com.example.ricimority.repositories.pagingsources.LocationPagingSources
+import com.example.ricimority.repositoryes.pagingsources.LocationPagingSources
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

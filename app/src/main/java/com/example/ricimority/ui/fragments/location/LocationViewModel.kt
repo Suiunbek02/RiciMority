@@ -1,14 +1,12 @@
 package com.example.ricimority.ui.fragments.location
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.example.ricimority.model.RickAndMortyResponse
 import com.example.ricimority.model.location.LocationModel
-import com.example.ricimority.repositories.RepositoryLocation
+import com.example.ricimority.repositoryes.RepositoryLocation
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

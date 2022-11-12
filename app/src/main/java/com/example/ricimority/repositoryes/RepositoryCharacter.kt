@@ -1,4 +1,4 @@
-package com.example.ricimority.repositories
+package com.example.ricimority.repositoryes
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,19 +6,16 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
-import com.example.ricimority.App
-import com.example.ricimority.data.network.apiservices.CharactorApi
-import com.example.ricimority.model.RickAndMortyResponse
+import com.example.ricimority.data.network.apiservices.CharacterApi
 import com.example.ricimority.model.character.Charactermodel
-import com.example.ricimority.repositories.pagingsources.CharacterPagingSources
-import kotlinx.coroutines.flow.flow
+import com.example.ricimority.repositoryes.pagingsources.CharacterPagingSources
 import retrofit2.Callback
 import retrofit2.Call
 import retrofit2.Response
 import javax.inject.Inject
 
-class RepositoriCharacter @Inject constructor(
-    private val charactorApi: CharactorApi
+class RepositoryCharacter @Inject constructor(
+    private val characterApi: CharacterApi
 ) {
 
     fun fetchCaracters(): LiveData<PagingData<Charactermodel>> {
@@ -29,7 +26,7 @@ class RepositoriCharacter @Inject constructor(
                 initialLoadSize = 2
             ),
             pagingSourceFactory = {
-                CharacterPagingSources(charactorApi)
+                CharacterPagingSources(characterApi)
             }, initialKey = 1
         ).liveData
     }
@@ -37,7 +34,7 @@ class RepositoriCharacter @Inject constructor(
     val data: MutableLiveData<Charactermodel> = MutableLiveData()
 
     fun getCharacter(id: Int): MutableLiveData<Charactermodel> {
-        charactorApi.getCharacter(id)
+        characterApi.getCharacter(id)
             .enqueue(object : Callback<Charactermodel> {
                 override fun onResponse(
                     call: Call<Charactermodel>,

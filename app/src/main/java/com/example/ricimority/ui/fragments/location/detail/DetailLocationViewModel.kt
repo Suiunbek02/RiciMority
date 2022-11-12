@@ -2,10 +2,8 @@ package com.example.ricimority.ui.fragments.location.detail
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.ricimority.model.episode.EpisodeModel
 import com.example.ricimority.model.location.LocationModel
-import com.example.ricimority.repositories.RepositoryEpisode
-import com.example.ricimority.repositories.RepositoryLocation
+import com.example.ricimority.repositoryes.RepositoryLocation
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
