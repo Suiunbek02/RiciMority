@@ -7,37 +7,9 @@ import com.example.ricimority.data.network.apiservices.CharactorApi
 import com.example.ricimority.data.network.apiservices.EpisodeApi
 import com.example.ricimority.data.network.apiservices.LocationApi
 import com.example.ricimority.data.network.apiservices.RetrofitClient
+import dagger.hilt.android.HiltAndroidApp
+import dagger.hilt.android.lifecycle.HiltViewModel
 
+@HiltAndroidApp
 class App : Application() {
-
-    companion object {
-        private val retrofitClient = RetrofitClient()
-        var charactorApi: CharactorApi? = null
-        var episodeApi: EpisodeApi? = null
-        var locationApi: LocationApi? = null
-        var appDatabase: AppDatabase? = null
-    }
-
-    private fun instanceOfRoom(): AppDatabase? {
-        if (appDatabase == null) {
-            appDatabase = applicationContext?.let {
-                Room.databaseBuilder(
-                    it,
-                    AppDatabase::class.java,
-                    "note_database"
-                ).fallbackToDestructiveMigration()
-                    .allowMainThreadQueries()
-                    .build()
-            }
-        }
-        return appDatabase
-    }
-
-    override fun onCreate() {
-        super.onCreate()
-        charactorApi = retrofitClient.providerCherecterApiService()
-        episodeApi = retrofitClient.providerEpisodeApiService()
-        locationApi = retrofitClient.providerLocationApiService()
-        instanceOfRoom()
-    }
 }

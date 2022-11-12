@@ -2,41 +2,59 @@ package com.example.ricimority.repositories
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.liveData
 import com.example.ricimority.App
+import com.example.ricimority.data.network.apiservices.CharactorApi
 import com.example.ricimority.model.RickAndMortyResponse
 import com.example.ricimority.model.character.Charactermodel
+import com.example.ricimority.repositories.pagingsources.CharacterPagingSources
+import kotlinx.coroutines.flow.flow
 import retrofit2.Callback
 import retrofit2.Call
 import retrofit2.Response
+import javax.inject.Inject
 
-class RepositoriCharacter {
+class RepositoriCharacter @Inject constructor(
+    private val charactorApi: CharactorApi
+) {
 
-    val data: MutableLiveData<RickAndMortyResponse<Charactermodel>> = MutableLiveData()
+    fun fetchCaracters(): LiveData<PagingData<Charactermodel>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 10,
+                enablePlaceholders = false,
+                initialLoadSize = 2
+            ),
+            pagingSourceFactory = {
+                CharacterPagingSources(charactorApi)
+            }, initialKey = 1
+        ).liveData
+    }
 
-    fun fetchCharacter(): MutableLiveData<RickAndMortyResponse<Charactermodel>> {
-        App.charactorApi?.fetchCharacters()
-            ?.enqueue(object : Callback<RickAndMortyResponse<Charactermodel>> {
+    val data: MutableLiveData<Charactermodel> = MutableLiveData()
+
+    fun getCharacter(id: Int): MutableLiveData<Charactermodel> {
+        charactorApi.getCharacter(id)
+            .enqueue(object : Callback<Charactermodel> {
                 override fun onResponse(
-                    call: Call<RickAndMortyResponse<Charactermodel>>,
-                    response: Response<RickAndMortyResponse<Charactermodel>>
+                    call: Call<Charactermodel>,
+                    response: Response<Charactermodel>
                 ) {
                     response.body()?.let {
-                        App.appDatabase?.characterDao()?.insertList(it.results)
                         data.value = it
                     }
                 }
 
                 override fun onFailure(
-                    call: Call<RickAndMortyResponse<Charactermodel>>,
+                    call: Call<Charactermodel>,
                     t: Throwable
                 ) {
 
                 }
             })
         return data
-    }
-
-    fun getCharacters(): LiveData<List<Charactermodel>> {
-        return App.appDatabase?.characterDao()?.getAllList()!!
     }
 }

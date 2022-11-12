@@ -2,41 +2,58 @@ package com.example.ricimority.repositories
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.liveData
 import com.example.ricimority.App
-import com.example.ricimority.model.RickAndMortyResponse
+import com.example.ricimority.data.network.apiservices.EpisodeApi
+import com.example.ricimority.data.network.apiservices.LocationApi
+import com.example.ricimority.model.episode.EpisodeModel
 import com.example.ricimority.model.location.LocationModel
+import com.example.ricimority.repositories.pagingsources.LocationPagingSources
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class RepositoryLocation {
+class RepositoryLocation @Inject constructor(
+    private val locationApi: LocationApi
+) {
 
-    val data: MutableLiveData<RickAndMortyResponse<LocationModel>> = MutableLiveData()
+   fun fetchLocation(): LiveData<PagingData<LocationModel>> {
+       return Pager(
+           config = PagingConfig(
+               pageSize = 10,
+               enablePlaceholders = false,
+               initialLoadSize = 2
+           ),
+           pagingSourceFactory = {
+               LocationPagingSources(locationApi)
+           }, initialKey = 1
+       ).liveData
+   }
 
-    fun fetchLocation(): MutableLiveData<RickAndMortyResponse<LocationModel>> {
-        App.locationApi?.fetchLocation()
-            ?.enqueue(object : Callback<RickAndMortyResponse<LocationModel>> {
+    val data: MutableLiveData<LocationModel> = MutableLiveData()
+
+    fun getLocation(id: Int): MutableLiveData<LocationModel> {
+        locationApi.getLocation(id) .enqueue(
+            object : Callback<LocationModel> {
                 override fun onResponse(
-                    call: Call<RickAndMortyResponse<LocationModel>>,
-                    response: Response<RickAndMortyResponse<LocationModel>>
-                ) {
+                    call: Call<LocationModel>,
+                    response: Response<LocationModel>
+                ){
                     response.body()?.let {
-                        App.appDatabase?.locationDao()?.insertList(it.results)
                         data.value = it
                     }
                 }
 
                 override fun onFailure(
-                    call: Call<RickAndMortyResponse<LocationModel>>,
-                    t: Throwable
-                ) {
-
+                    call: Call<LocationModel>,
+                    t: Throwable) {
                 }
+
             })
         return data
-    }
-
-    fun getLocation(): LiveData<List<LocationModel>> {
-        return App.appDatabase?.locationDao()?.getAllList()!!
     }
 }

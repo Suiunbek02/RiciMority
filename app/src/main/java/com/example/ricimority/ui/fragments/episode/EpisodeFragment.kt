@@ -1,22 +1,29 @@
 package com.example.ricimority.ui.fragments.episode
 
 
-import android.util.Log
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.ricimority.base.BaseFragment
 import com.example.ricimority.R
 import com.example.ricimority.data.network.apiservices.checkingtheInternet.CheckingTheInternet
 import com.example.ricimority.databinding.FragmentEpisodeBinding
+import com.example.ricimority.model.episode.EpisodeModel
 import com.example.ricimority.ui.adapters.EpisodeAdapter
+import com.example.ricimority.ui.adapters.OnClickList
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class EpisodeFragment
-    : BaseFragment<FragmentEpisodeBinding, EpisodeViewModel>(R.layout.fragment_episode) {
+    : BaseFragment<FragmentEpisodeBinding, EpisodeViewModel>(R.layout.fragment_episode),
+OnClickList{
 
     override val binding by viewBinding(FragmentEpisodeBinding::bind)
     override val viewModel: EpisodeViewModel by viewModels()
-    private val episodeAdapter = EpisodeAdapter()
+    private val episodeAdapter = EpisodeAdapter(this)
 
     override fun initialize() {
         binding.episodeRecView.apply {
@@ -28,13 +35,17 @@ class EpisodeFragment
     override fun setupObservers() {
         if (CheckingTheInternet.isOnline(requireContext())) {
             viewModel.fetchEpisode().observe(viewLifecycleOwner) {
-                episodeAdapter.submitList(it.results)
-            }
-        }else {
-            viewModel.getAllFromRoom().observe(viewLifecycleOwner) {
-                episodeAdapter.submitList(it)
-                Log.e("not internet", "is network")
+                lifecycleScope.launch{
+                    episodeAdapter.submitData(it)
+                }
             }
         }
+    }
+
+    override fun listener(model: EpisodeModel?) {
+        findNavController().navigate(
+            EpisodeFragmentDirections
+                .actionEpisodeFragmentToDetailEpisodeFragment(model?.id!!)
+        )
     }
 }

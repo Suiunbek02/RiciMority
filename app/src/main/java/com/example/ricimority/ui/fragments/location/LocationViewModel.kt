@@ -3,19 +3,21 @@ package com.example.ricimority.ui.fragments.location
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.example.ricimority.model.RickAndMortyResponse
 import com.example.ricimority.model.location.LocationModel
 import com.example.ricimority.repositories.RepositoryLocation
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class LocationViewModel: ViewModel() {
+@HiltViewModel
+class LocationViewModel @Inject constructor(
+    private val location: RepositoryLocation
+) : ViewModel() {
 
-     private  val repository = RepositoryLocation()
-
-     fun fetchLocation(): MutableLiveData<RickAndMortyResponse<LocationModel>> {
-         return repository.fetchLocation()
-     }
-
-    fun getAllFromRoom(): LiveData<List<LocationModel>> {
-        return repository.getLocation()
+    fun fetchLocation(): LiveData<PagingData<LocationModel>> {
+        return location.fetchLocation().cachedIn(viewModelScope)
     }
 }

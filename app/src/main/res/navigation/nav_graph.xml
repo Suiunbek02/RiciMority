@@ -7,17 +7,70 @@
 
     <fragment
         android:id="@+id/characterFragment"
-        android:name="com.example.ricimority.ui.fragments.charactor.CharacterFragment"
+        android:name="com.example.ricimority.ui.fragments.character.CharacterFragment"
         android:label="Character"
-        tools:layout="@layout/fragment_character" />
+        tools:layout="@layout/fragment_character" >
+        <action
+            android:id="@+id/action_characterFragment_to_detailCharacterFragment"
+            app:destination="@id/detailCharacterFragment" />
+        <argument
+            android:name="setId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
     <fragment
         android:id="@+id/locationFragment"
         android:name="com.example.ricimority.ui.fragments.location.LocationFragment"
         android:label="Location"
-        tools:layout="@layout/fragment_location" />
+        tools:layout="@layout/fragment_location" >
+        <action
+            android:id="@+id/action_locationFragment_to_detailLocationFragment"
+            app:destination="@id/detailLocationFragment" />
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
     <fragment
         android:id="@+id/episodeFragment"
         android:name="com.example.ricimority.ui.fragments.episode.EpisodeFragment"
         android:label="Episode"
-        tools:layout="@layout/fragment_episode" />
+        tools:layout="@layout/fragment_episode" >
+        <action
+            android:id="@+id/action_episodeFragment_to_detailEpisodeFragment"
+            app:destination="@id/detailEpisodeFragment" />
+        <argument
+            android:name="id"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailCharacterFragment"
+        android:name="com.example.ricimority.ui.fragments.character.detail.DetailCharacterFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailEpisodeFragment"
+        android:name="com.example.ricimority.ui.fragments.episode.detail.DetailEpisodeFragment"
+        android:label="fragment_detail2"
+        tools:layout="@layout/fragment_detail2" >
+        <argument
+            android:name="getid"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailLocationFragment"
+        android:name="com.example.ricimority.ui.fragments.location.detail.DetailLocationFragment"
+        android:label="fragment_detail3"
+        tools:layout="@layout/fragment_detail3"
+        tools:ignore="ExtraText">
+        />
+        <argument
+            android:name="getId"
+            app:argType="integer" />
+    </fragment>
 </navigation>
