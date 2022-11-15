@@ -6,19 +6,19 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.ricimority.base.BaseDiffUtilltemCallback
+import com.example.ricimority.base.BaseDiffUtilItemCallback
 import com.example.ricimority.databinding.ItemCharacterBinding
-import com.example.ricimority.model.character.Charactermodel
+import com.example.ricimority.model.character.CharacterModel
 
 
 class CharacterAdapter(
     private val onClick: OnClick
 ) :
-    PagingDataAdapter<Charactermodel, CharacterAdapter.ViewHolder>(BaseDiffUtilltemCallback()){
+    PagingDataAdapter<CharacterModel, CharacterAdapter.ViewHolder>(BaseDiffUtilItemCallback()){
 
     class ViewHolder(private val binding: ItemCharacterBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(item: Charactermodel?, onClick: OnClick) {
+        fun onBind(item: CharacterModel?, onClick: OnClick) {
             binding.itemCharacterText.text = item?.name
             binding.itemCharacterImage.load(item?.image)
             binding.itemCharacterStatus.text = item?.status
@@ -28,10 +28,9 @@ class CharacterAdapter(
             itemView.setOnClickListener{
                 onClick.listener(item)
             }
-
         }
 
-        private fun colorImage(item: Charactermodel?): Int {
+        private fun colorImage(item: CharacterModel?): Int {
             return when (item?.status) {
                 "Alive" -> {
                     Color.parseColor("#1e9e05")
@@ -59,9 +58,8 @@ class CharacterAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.onBind(getItem(position), onClick)
     }
-
 }
 
 interface OnClick {
-    fun listener(model: Charactermodel?)
+    fun listener(model: CharacterModel?)
 }

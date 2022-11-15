@@ -20,7 +20,7 @@ class DetailEpisodeFragment :
 
     override fun setupView(): Unit = with(binding) {
         lifecycleScope.launch {
-            viewModel.getEpisode(safeArgs.getid).observe(viewLifecycleOwner) {model ->
+            viewModel.fetchEpisode(safeArgs.getid).observe(viewLifecycleOwner) { model ->
                 binding.root
                 binding.episodeCharacters.text = model.url
                 binding.episodeCreated.text = model.created
@@ -29,12 +29,4 @@ class DetailEpisodeFragment :
             }
         }
     }
-
-
-
-
-
-
-
-
 }

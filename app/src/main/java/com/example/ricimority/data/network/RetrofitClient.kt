@@ -1,5 +1,8 @@
-package com.example.ricimority.data.network.apiservices
+package com.example.ricimority.data.network
 
+import com.example.ricimority.data.network.apiservices.CharacterApi
+import com.example.ricimority.data.network.apiservices.EpisodeApi
+import com.example.ricimority.data.network.apiservices.LocationApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

@@ -1,5 +1,5 @@
 package com.example.ricimority.base
 
- interface IBaseDiffUtill {
+ interface IBaseDiffUtil {
      val id: Int
  }

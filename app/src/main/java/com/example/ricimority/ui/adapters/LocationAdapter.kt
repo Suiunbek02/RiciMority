@@ -3,18 +3,15 @@ package com.example.ricimority.ui.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ricimority.base.BaseDiffUtilltemCallback
-import com.example.ricimority.base.IBaseDiffUtill
+import com.example.ricimority.base.BaseDiffUtilItemCallback
 import com.example.ricimority.databinding.ItemLocationBinding
 import com.example.ricimority.model.location.LocationModel
 
 class LocationAdapter(
     private val shortClick: setShortClick
 ) :
-    PagingDataAdapter<LocationModel, LocationAdapter.ViewHolder>(BaseDiffUtilltemCallback()) {
+    PagingDataAdapter<LocationModel, LocationAdapter.ViewHolder>(BaseDiffUtilItemCallback()) {
 
     class ViewHolder(private val binding: ItemLocationBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -42,6 +39,7 @@ class LocationAdapter(
         holder.onBind(getItem(position), shortClick)
     }
 }
-interface setShortClick{
+
+interface setShortClick {
     fun listener(model: LocationModel?)
 }

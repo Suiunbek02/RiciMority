@@ -1,6 +1,7 @@
 package com.example.ricimority.ui.fragments.episode
 
 
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -40,6 +41,10 @@ OnClickList{
                 }
             }
         }
+    }
+
+    override fun setupView() {
+        binding.episodeProgressBar.visibility = View.GONE
     }
 
     override fun listener(model: EpisodeModel?) {

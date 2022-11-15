@@ -4,14 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ricimority.base.BaseDiffUtilltemCallback
+import com.example.ricimority.base.BaseDiffUtilItemCallback
 import com.example.ricimority.databinding.ItemEpisodeBinding
 import com.example.ricimority.model.episode.EpisodeModel
 
 class EpisodeAdapter(
     private val onClick: OnClickList
 ) :
-    PagingDataAdapter<EpisodeModel, EpisodeAdapter.ViewHolder>(BaseDiffUtilltemCallback()) {
+    PagingDataAdapter<EpisodeModel, EpisodeAdapter.ViewHolder>(BaseDiffUtilItemCallback()) {
 
     class ViewHolder(private val binding: ItemEpisodeBinding) :
         RecyclerView.ViewHolder(binding.root) {

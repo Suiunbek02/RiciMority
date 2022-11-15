@@ -6,13 +6,13 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.ricimority.model.location.LocationModel
-import com.example.ricimority.repositoryes.RepositoryLocation
+import com.example.ricimority.data.repositoryes.LocationRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class LocationViewModel @Inject constructor(
-    private val location: RepositoryLocation
+    private val location: LocationRepository
 ) : ViewModel() {
 
     fun fetchLocation(): LiveData<PagingData<LocationModel>> {

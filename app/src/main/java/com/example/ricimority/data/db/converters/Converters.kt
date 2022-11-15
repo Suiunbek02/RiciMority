@@ -2,12 +2,13 @@ package com.example.ricimority.data.db.converters
 
 
 import androidx.room.TypeConverter
+import com.example.ricimority.model.character.Location
 import com.example.ricimority.model.character.Origin
 
 class Converters {
 
     @TypeConverter
-   fun fromLocation(model: com.example.ricimority.model.character.Location): String {
+   fun fromLocation(model: Location): String {
        return model.name
    }
 
@@ -17,8 +18,8 @@ class Converters {
     }
 
     @TypeConverter
-    fun toLocation(name: String): com.example.ricimority.model.character.Location {
-        return com.example.ricimority.model.character.Location(name)
+    fun toLocation(name: String): Location {
+        return Location(name)
     }
 
     @TypeConverter

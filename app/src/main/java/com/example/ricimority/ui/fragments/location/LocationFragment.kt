@@ -1,5 +1,6 @@
 package com.example.ricimority.ui.fragments.location
 
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -39,7 +40,6 @@ class LocationFragment :
                     locationAdapter.submitData(it)
                 }
             }
-
         }
     }
 

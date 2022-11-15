@@ -1,9 +1,9 @@
 package com.example.ricimority.di
 
+import com.example.ricimority.data.network.RetrofitClient
 import com.example.ricimority.data.network.apiservices.CharacterApi
 import com.example.ricimority.data.network.apiservices.EpisodeApi
 import com.example.ricimority.data.network.apiservices.LocationApi
-import com.example.ricimority.data.network.apiservices.RetrofitClient
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -41,5 +41,4 @@ object NetworkModule {
     fun provideLocationApi(): LocationApi {
         return retrofitClientLocation.providerLocationApiService()
     }
-
 }

@@ -20,7 +20,7 @@ class DetailLocationFragment :
 
     override fun setupView(): Unit = with(binding) {
         lifecycleScope.launch {
-            viewModel.getlocation(safeArgs.getId).observe(viewLifecycleOwner) {model ->
+            viewModel.fetchLocation(safeArgs.getId).observe(viewLifecycleOwner) { model ->
                 binding.root
                 binding.locationName.text = model.name
                 binding.locationAirDate.text = model.url

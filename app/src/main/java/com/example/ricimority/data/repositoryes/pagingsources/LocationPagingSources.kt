@@ -1,4 +1,4 @@
-package com.example.ricimority.repositoryes.pagingsources
+package com.example.ricimority.data.repositoryes.pagingsources
 
 import android.net.Uri
 import androidx.paging.PagingSource

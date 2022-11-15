@@ -1,4 +1,4 @@
-package com.example.ricimority.repositoryes
+package com.example.ricimority.data.repositoryes
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,19 +6,19 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
-import com.example.ricimority.data.network.apiservices.CharacterApi
-import com.example.ricimority.model.character.Charactermodel
-import com.example.ricimority.repositoryes.pagingsources.CharacterPagingSources
-import retrofit2.Callback
+import com.example.ricimority.data.network.apiservices.EpisodeApi
+import com.example.ricimority.data.repositoryes.pagingsources.EpisodePagingSources
+import com.example.ricimority.model.episode.EpisodeModel
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
 
-class RepositoryCharacter @Inject constructor(
-    private val characterApi: CharacterApi
+class EpisodeRepository @Inject constructor(
+    private val episodeApi: EpisodeApi
 ) {
 
-    fun fetchCaracters(): LiveData<PagingData<Charactermodel>> {
+    fun fetchEpisode(): LiveData<PagingData<EpisodeModel>> {
         return Pager(
             config = PagingConfig(
                 pageSize = 10,
@@ -26,19 +26,19 @@ class RepositoryCharacter @Inject constructor(
                 initialLoadSize = 2
             ),
             pagingSourceFactory = {
-                CharacterPagingSources(characterApi)
+                EpisodePagingSources(episodeApi)
             }, initialKey = 1
         ).liveData
     }
 
-    val data: MutableLiveData<Charactermodel> = MutableLiveData()
+    val data: MutableLiveData<EpisodeModel> = MutableLiveData()
 
-    fun getCharacter(id: Int): MutableLiveData<Charactermodel> {
-        characterApi.getCharacter(id)
-            .enqueue(object : Callback<Charactermodel> {
+    fun getEpisode(id: Int): MutableLiveData<EpisodeModel> {
+        episodeApi.getEpisode(id).enqueue(
+            object : Callback<EpisodeModel> {
                 override fun onResponse(
-                    call: Call<Charactermodel>,
-                    response: Response<Charactermodel>
+                    call: Call<EpisodeModel>,
+                    response: Response<EpisodeModel>
                 ) {
                     response.body()?.let {
                         data.value = it
@@ -46,12 +46,14 @@ class RepositoryCharacter @Inject constructor(
                 }
 
                 override fun onFailure(
-                    call: Call<Charactermodel>,
+                    call: Call<EpisodeModel>,
                     t: Throwable
                 ) {
-
                 }
+
             })
         return data
     }
 }
+
+

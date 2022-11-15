@@ -22,7 +22,7 @@ class DetailCharacterFragment :
 
     override fun setupView(): Unit = with(binding) {
         lifecycleScope.launch {
-            viewModel.getCharacter(safeArgs.id).observe(viewLifecycleOwner) { model ->
+            viewModel.fetchCharacter(safeArgs.id).observe(viewLifecycleOwner) { model ->
                 binding.itemDetailImage.load(model.image)
                 binding.itemDetailText.text = model.name
             }

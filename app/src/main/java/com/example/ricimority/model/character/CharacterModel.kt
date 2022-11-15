@@ -3,12 +3,12 @@ package com.example.ricimority.model.character
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
-import com.example.ricimority.base.IBaseDiffUtill
+import com.example.ricimority.base.IBaseDiffUtil
 import com.example.ricimority.data.db.converters.Converters
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "character")
-data class Charactermodel(
+data class CharacterModel(
 
     @SerializedName("id")
     @PrimaryKey(autoGenerate = false)
@@ -36,4 +36,4 @@ data class Charactermodel(
     @TypeConverters(Converters::class)
     @SerializedName("location")
     val location: Location
-) : IBaseDiffUtill
+) : IBaseDiffUtil

@@ -2,7 +2,7 @@ package com.example.ricimority.model.location
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.ricimority.base.IBaseDiffUtill
+import com.example.ricimority.base.IBaseDiffUtil
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "location")
@@ -26,4 +26,4 @@ data class LocationModel(
 
     @SerializedName("dimension")
     val dimension: String?
-): IBaseDiffUtill
+): IBaseDiffUtil

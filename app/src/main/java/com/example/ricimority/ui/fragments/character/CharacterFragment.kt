@@ -11,7 +11,7 @@ import com.example.ricimority.base.BaseFragment
 import com.example.ricimority.R
 import com.example.ricimority.data.network.apiservices.checkingtheInternet.CheckingTheInternet
 import com.example.ricimority.databinding.FragmentCharacterBinding
-import com.example.ricimority.model.character.Charactermodel
+import com.example.ricimority.model.character.CharacterModel
 import com.example.ricimority.ui.adapters.CharacterAdapter
 import com.example.ricimority.ui.adapters.OnClick
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,12 +24,12 @@ class CharacterFragment :
 
     override val binding by viewBinding(FragmentCharacterBinding::bind)
     override val viewModel: CharacterViewModel by viewModels()
-    private val charactorAdapter = CharacterAdapter(this)
+    private val characterAdapter = CharacterAdapter(this)
 
     override fun initialize() {
         binding.characterRecView.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = charactorAdapter
+            adapter = characterAdapter
         }
     }
 
@@ -37,7 +37,7 @@ class CharacterFragment :
         if (CheckingTheInternet.isOnline(requireContext())) {
             viewModel.fetchCharacters().observe(viewLifecycleOwner) {
                 lifecycleScope.launch {
-                    charactorAdapter.submitData(it)
+                    characterAdapter.submitData(it)
                 }
             }
         }
@@ -47,7 +47,7 @@ class CharacterFragment :
         binding.characterProgressBar.visibility = View.GONE
     }
 
-    override fun listener(model: Charactermodel?) {
+    override fun listener(model: CharacterModel?) {
         findNavController().navigate(
             CharacterFragmentDirections
                 .actionCharacterFragmentToDetailCharacterFragment(model?.id!!)

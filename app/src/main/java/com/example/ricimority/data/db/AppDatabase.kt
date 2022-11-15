@@ -7,11 +7,11 @@ import com.example.ricimority.data.db.converters.Converters
 import com.example.ricimority.data.db.daos.CharacterDao
 import com.example.ricimority.data.db.daos.EpisodeDao
 import com.example.ricimority.data.db.daos.LocationDao
-import com.example.ricimority.model.character.Charactermodel
+import com.example.ricimority.model.character.CharacterModel
 import com.example.ricimority.model.episode.EpisodeModel
 import com.example.ricimority.model.location.LocationModel
 
-@Database(entities = [Charactermodel::class, EpisodeModel::class, LocationModel::class],
+@Database(entities = [CharacterModel::class, EpisodeModel::class, LocationModel::class],
     version = 1
 )
 
