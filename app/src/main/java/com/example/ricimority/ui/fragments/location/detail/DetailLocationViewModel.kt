@@ -13,6 +13,6 @@ class DetailLocationViewModel @Inject constructor(
 ) : ViewModel() {
 
     fun fetchLocation(id: Int): MutableLiveData<LocationModel> {
-        return repositoryLocation.getLocation(id)
+        return repositoryLocation.fetchDetailLocation(id)
     }
 }

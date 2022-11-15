@@ -15,7 +15,7 @@ interface LocationApi {
     ): RickAndMortyResponse<LocationModel>
 
     @GET("api/character/{id}")
-    fun getLocation(
+    fun fetchDetailLocation(
         @Path("id") id: Int
     ): Call<LocationModel>
 }

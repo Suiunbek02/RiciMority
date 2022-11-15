@@ -27,7 +27,7 @@ class  RetrofitClient {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    fun providerCherecterApiService(): CharacterApi {
+    fun providerCharacterApiService(): CharacterApi {
         return retrofit.create(CharacterApi::class.java)
     }
 

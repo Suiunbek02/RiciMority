@@ -33,8 +33,8 @@ class CharacterRepository @Inject constructor(
 
     val data: MutableLiveData<CharacterModel> = MutableLiveData()
 
-    fun getCharacter(id: Int): MutableLiveData<CharacterModel> {
-        characterApi.getCharacter(id)
+    fun fetchDetailCharacter(id: Int): MutableLiveData<CharacterModel> {
+        characterApi.fetchDetailCharacter(id)
             .enqueue(object : Callback<CharacterModel> {
                 override fun onResponse(
                     call: Call<CharacterModel>,

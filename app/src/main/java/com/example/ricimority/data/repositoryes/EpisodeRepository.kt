@@ -33,8 +33,8 @@ class EpisodeRepository @Inject constructor(
 
     val data: MutableLiveData<EpisodeModel> = MutableLiveData()
 
-    fun getEpisode(id: Int): MutableLiveData<EpisodeModel> {
-        episodeApi.getEpisode(id).enqueue(
+    fun fetchDetailEpisode(id: Int): MutableLiveData<EpisodeModel> {
+        episodeApi.fetchDetailEpisode(id).enqueue(
             object : Callback<EpisodeModel> {
                 override fun onResponse(
                     call: Call<EpisodeModel>,

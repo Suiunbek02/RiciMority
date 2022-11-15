@@ -16,7 +16,7 @@ class CharacterPagingSources(
 
         return try {
 
-            val response = characterApi.fetchCharacters(position)
+            val response = characterApi.fetchCharacter(position)
             val nextPage = response.info.next
             val nextPageNumber = if (nextPage == null) {
 

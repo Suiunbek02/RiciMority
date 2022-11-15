@@ -33,8 +33,8 @@ class LocationRepository @Inject constructor(
 
     val data: MutableLiveData<LocationModel> = MutableLiveData()
 
-    fun getLocation(id: Int): MutableLiveData<LocationModel> {
-        locationApi.getLocation(id).enqueue(
+    fun fetchDetailLocation(id: Int): MutableLiveData<LocationModel> {
+        locationApi.fetchDetailLocation(id).enqueue(
             object : Callback<LocationModel> {
                 override fun onResponse(
                     call: Call<LocationModel>,

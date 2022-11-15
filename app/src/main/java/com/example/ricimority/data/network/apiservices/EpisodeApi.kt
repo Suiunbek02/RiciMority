@@ -15,7 +15,7 @@ interface EpisodeApi {
      ): RickAndMortyResponse<EpisodeModel>
 
      @GET("api/character/{id}")
-     fun getEpisode(
+     fun fetchDetailEpisode(
           @Path("id") id: Int
      ): Call<EpisodeModel>
 }

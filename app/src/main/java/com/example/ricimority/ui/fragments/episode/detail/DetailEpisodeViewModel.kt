@@ -13,6 +13,6 @@ class DetailEpisodeViewModel @Inject constructor(
 ) : ViewModel() {
 
     fun fetchEpisode(id: Int): MutableLiveData<EpisodeModel> {
-        return repositoryEpisode.getEpisode(id)
+        return repositoryEpisode.fetchDetailEpisode(id)
     }
 }

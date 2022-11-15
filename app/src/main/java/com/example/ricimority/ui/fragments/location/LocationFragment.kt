@@ -1,6 +1,5 @@
 package com.example.ricimority.ui.fragments.location
 
-import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -14,7 +13,6 @@ import com.example.ricimority.model.location.LocationModel
 import com.example.ricimority.ui.adapters.LocationAdapter
 import com.example.ricimority.ui.adapters.setShortClick
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint

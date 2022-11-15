@@ -14,6 +14,6 @@ class DetailCharacterViewModel @Inject constructor(
 ) : ViewModel() {
 
     fun fetchCharacter(id: Int): MutableLiveData<CharacterModel> {
-        return repositoryCharacter.getCharacter(id)
+        return repositoryCharacter.fetchDetailCharacter(id)
     }
 }
